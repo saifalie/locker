@@ -17,7 +17,7 @@ export const handleFingerPrint = asyncHandler(async (req, res) => {
 
     const body = req.body;
     console.log(body);
-    return res.status(200).json(new ApiResponse(200, { body }, "data sent"));
+    return res.status(200).json(new ApiResponse(200, { body }, "finger print"));
 
 
 })
