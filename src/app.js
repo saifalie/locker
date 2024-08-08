@@ -14,6 +14,11 @@ app.use(cors({
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+
+// const path = require('path');
+
+// app.use(express.static(path.resolve('./public')));
+
 app.use("/api/v1/test", testRouter)
 
 export default app
