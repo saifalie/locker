@@ -1,5 +1,5 @@
 import connectDB from "../db/index.js";
-import app, { PORT } from "./app.js";
+import server, { PORT } from "./app.js";
 import dotenv from "dotenv"
 
 // new way of importing dotenv
@@ -9,9 +9,9 @@ dotenv.config({
 })
 
 
-connectDB()
+connectDB() 
     .then(() => {
-        app.listen(PORT, () => {
+        server.listen(PORT, () => {
             console.log(`server is running on the PORT:${PORT}`);
         })
 

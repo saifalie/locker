@@ -1,9 +1,16 @@
 import express from "express"
 import cors from "cors"
 import testRouter from "../routes/test.route.js"
+import http from "http"
+import { Server } from "socket.io";
+
+
 
 const app = express()
+const server = http.createServer(app) // create HTTP server using Express
+const io = new Server(server) // Initialize Socket.IO with the HTTP server
 export const PORT = process.env.PORT || 7777
+
 
 
 
@@ -19,9 +26,32 @@ app.use(express.json())
 
 // app.use(express.static(path.resolve('./public')));
 
+
+
+
+io.on("connection", (socket) => {
+    console.log("user connected");
+
+    socket.on("control", (data) => {
+        console.log(data.command);
+
+        socket.emit("statusUpdate",data)
+
+    }) 
+
+
+    socket.on("disconnect", () => {
+        console.log("Client disconnected");
+
+    })
+
+})
+
+
+
 app.use("/api/v1/test", testRouter)
 
-export default app
+export default server
 
 
 
