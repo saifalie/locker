@@ -8,7 +8,12 @@ import { Server } from "socket.io";
 
 const app = express()
 const server = http.createServer(app) // create HTTP server using Express
-const io = new Server(server) // Initialize Socket.IO with the HTTP server
+const io = new Server(server, {
+    cors: {
+        origin: "*", // You can specify allowed origins here instead of "*"
+        methods: ["GET", "POST"]
+    }
+}) // Initialize Socket.IO with the HTTP server
 export const PORT = process.env.PORT || 7777
 
 
@@ -35,9 +40,9 @@ io.on("connection", (socket) => {
     socket.on("control", (data) => {
         console.log(data.command);
 
-        socket.emit("statusUpdate",data)
+        socket.emit("statusUpdate", data)
 
-    }) 
+    })
 
 
     socket.on("disconnect", () => {
