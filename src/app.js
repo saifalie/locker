@@ -44,6 +44,8 @@ io.on("connection", (socket) => {
 
     })
 
+    socket.emit("control", { command: "ON" })
+
 
     socket.on("disconnect", () => {
         console.log("Client disconnected");
