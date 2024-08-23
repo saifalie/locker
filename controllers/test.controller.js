@@ -27,7 +27,7 @@ export const handleFingerPrint = asyncHandler(async (req, res) => {
     await InvertColor(file.path, filename).then(() => {
         console.log("successfully inverted the image");
 
-        return res.status(200).json(new ApiResponse(200, { body }, "finger print"));
+        return res.status(200).json(new ApiResponse(200, { body }, "fingerprint"));
     })
         .catch((error) => {
             console.log("failed to inver the image", error);
