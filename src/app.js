@@ -35,7 +35,7 @@ app.use(express.json())
 
 
 io.on("connection", (socket) => {
-    console.log("user connected");
+    console.log("user connected" + socket.id);
 
     socket.on("control", (data) => {
         console.log(data.command);
